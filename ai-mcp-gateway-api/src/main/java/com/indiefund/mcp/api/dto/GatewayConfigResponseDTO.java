@@ -1,0 +1,21 @@
+package com.indiefund.mcp.api.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/**
+ * 网关配置应答对象
+ *
+ * 2026/3/24 08:04
+ */
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class GatewayConfigResponseDTO {
+
+    private Boolean success;
+
+}
