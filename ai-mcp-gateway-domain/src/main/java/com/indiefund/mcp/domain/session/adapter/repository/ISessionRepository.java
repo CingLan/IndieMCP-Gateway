@@ -1,0 +1,22 @@
+package com.indiefund.mcp.domain.session.adapter.repository;
+
+import com.indiefund.mcp.domain.session.model.valobj.gateway.McpGatewayConfigVO;
+import com.indiefund.mcp.domain.session.model.valobj.gateway.McpToolConfigVO;
+import com.indiefund.mcp.domain.session.model.valobj.gateway.McpToolProtocolConfigVO;
+
+import java.util.List;
+
+/**
+ * 会话仓储接口
+ *
+ * 2026/1/13 07:49
+ */
+public interface ISessionRepository {
+
+    McpGatewayConfigVO queryMcpGatewayConfigByGatewayId(String gatewayId);
+
+    List<McpToolConfigVO> queryMcpGatewayToolConfigListByGatewayId(String gatewayId);
+
+    McpToolProtocolConfigVO queryMcpGatewayProtocolConfig(String gatewayId, String toolName);
+
+}

@@ -1,0 +1,76 @@
+package com.indiefund.mcp.domain.session.service;
+
+import com.indiefund.mcp.domain.session.model.valobj.SessionConfigVO;
+import com.indiefund.mcp.domain.session.model.valobj.SessionSyncEventVO;
+import com.indiefund.mcp.domain.session.model.valobj.SessionSyncInfoVO;
+import com.indiefund.mcp.domain.session.model.valobj.enums.SessionTransportTypeEnumVO;
+
+import java.util.function.Consumer;
+
+/**
+ * 会话管理服务接口
+ *
+ * 2025/12/2 07:51
+ */
+public interface ISessionManagementService {
+
+    /**
+     * 创建回话，默认使用 SSE 传输协议，保持原有 SSE 逻辑兼容
+     * @return 会话配置
+     */
+    SessionConfigVO createSession(String gatewayId, String apiKey);
+
+    /**
+     * 创建回话，按传输协议类型做兼容处理
+     * @return 会话配置
+     */
+    SessionConfigVO createSession(String gatewayId, String apiKey, SessionTransportTypeEnumVO transportType);
+
+    /**
+     * 删除会话
+     * @param sessionId 会话ID
+     */
+    void removeSession(String sessionId);
+
+    /**
+     * 仅从当前实例移除本地会话
+     */
+    void removeLocalSession(String sessionId);
+
+    /**
+     * 获取会话
+     * @param sessionId 会话ID
+     * @return 会话配置
+     */
+    SessionConfigVO getSession(String sessionId);
+
+    /**
+     * 同步远端会话到本地实例
+     */
+    void syncSession(SessionSyncInfoVO sessionSyncInfoVO);
+
+    /**
+     * 是否已存在本地会话
+     */
+    boolean hasSession(String sessionId);
+
+    /**
+     * 初始化分布式会话数据
+     */
+    void initializeDistributedSessions();
+
+    /**
+     * 订阅 Redis Session 同步事件
+     */
+    void subscribeSessionSyncEvent(Consumer<SessionSyncEventVO> consumer);
+
+    /**
+     * 清理过期会话
+     */
+    void cleanupExpiredSessions();
+
+    /**
+     * 关闭服务时，清理资源使用
+     */
+    void shutdown();
+}

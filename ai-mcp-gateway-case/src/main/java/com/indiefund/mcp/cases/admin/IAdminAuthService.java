@@ -1,0 +1,16 @@
+package com.indiefund.mcp.cases.admin;
+
+import com.indiefund.mcp.domain.auth.model.entity.RegisterCommandEntity;
+
+/**
+ * 运营；认证配置管理
+ *
+ * 2026/3/24 08:11
+ */
+public interface IAdminAuthService {
+
+    void saveGatewayAuth(RegisterCommandEntity commandEntity);
+
+    void deleteGatewayAuth(String gatewayId);
+
+}
